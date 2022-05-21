@@ -15,22 +15,23 @@ pipeline {
         }
         stage('Building our image') {
             steps {
-                 sh "test2"
+                 sh 'test2'
             }
         }
+        
         stage('Push Image To DockerHUB') {
             steps {
-               sh "test3"
+               sh 'test3'
             }
         }
         stage('Cleaning up') {
             steps {
-                sh "cleaning"
+                sh 'cleaning'
             }
         }
         stage('Deploying to Docker Swarm') {
             steps {
-                sh "test4"
+                sh 'test4'
             }
         }
         stage('Verifying The Deployment') {
