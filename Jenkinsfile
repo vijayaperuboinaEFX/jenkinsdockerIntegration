@@ -16,7 +16,7 @@ pipeline {
           }   
 	    stage('Building our image') {
             steps {
-                    sh 'docker build -t peruboinas/testjenkinsdocker:latest'
+                    sh 'docker build -t peruboinas/testjenkinsdocker:latest .'
 		    sh'$dockerImage'
                 }
           }
