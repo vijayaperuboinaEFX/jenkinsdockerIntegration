@@ -1,9 +1,9 @@
 pipeline {
     environment {
         registry = 'peruboinas/testjenkinsdock'
-        registryCredential = 'dockerhub_id'
-        dockerSwarmManager = '10.40.1.26:2375'
-        dockerhost = '10.40.1.26'
+        registryCredential = 'docker-hub-credentials'
+        //dockerSwarmManager = '10.40.1.26:2375'
+        //dockerhost = '10.40.1.26'
         dockerImage = ''
     }
     agent any
