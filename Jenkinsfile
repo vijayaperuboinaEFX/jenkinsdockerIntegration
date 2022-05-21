@@ -15,12 +15,12 @@ pipeline {
         }
         stage('Building our image') {
             steps {
-                 sh 'test2'
+                 sh "test2"
             }
         }
         stage('Push Image To DockerHUB') {
             steps {
-               sh 'test3'
+               sh "test3"
             }
         }
         stage('Cleaning up') {
