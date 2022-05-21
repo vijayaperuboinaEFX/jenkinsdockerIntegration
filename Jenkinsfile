@@ -14,18 +14,16 @@ pipeline {
                 git 'https://github.com/vijayaperuboinaEFX/jenkinsdockerIntegration.git'
             }
           }   
-          stage('Building our image') 
+	    stage('Building our image') {
             steps {
-                script {
                     sh 'docker build -t peruboinas/testjenkinsdocker:latest'
 		    sh'$dockerImage'
                 }
-            }
-        }
+          }
         stage('Deploy') {
             steps {
                 echo 'make publish'
             }
         }
-    }
-}
+    }	    
+  }
