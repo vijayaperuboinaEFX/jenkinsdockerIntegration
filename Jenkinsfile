@@ -29,7 +29,7 @@ pipeline {
                     }
                 }
             }
-        }
+        //}
         stage('Cleaning up') {
             steps {
                 sh "docker rmi $registry:v$BUILD_NUMBER"
