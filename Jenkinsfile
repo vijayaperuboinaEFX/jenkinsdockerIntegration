@@ -23,7 +23,7 @@ pipeline {
           }
         stage('Deploy') {
             steps {
-                echo 'make publish'
+                sh 'docker push peruboinas/testjenkinsdocker:latest'
             }
         }
     }	    
