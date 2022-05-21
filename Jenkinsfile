@@ -14,10 +14,10 @@ pipeline {
                 git 'https://github.com/vijayaperuboinaEFX/jenkinsdockerIntegration.git'
             }
           }   
-          stage('Building our image') {
+          stage('Building our image') 
             steps {
                 script {
-                    dockerImage = docker.build("$registry:${env.BUILD_ID}")	
+                    sh' docker.build -t peruboinas/testjenkinsdocker:latest'
 		    sh'$dockerImage'
                 }
             }
