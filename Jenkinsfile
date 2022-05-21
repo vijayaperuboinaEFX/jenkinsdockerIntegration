@@ -1,43 +1,24 @@
-pipeline {
-    environment {
-        registry = 'peruboinas/testjenkinsdocker'
-        registryCredential = 'docker-hub-credentials'
-        //dockerSwarmManager = '10.40.1.26:2375'
-        //dockerhost = '10.40.1.26'
-        dockerImage = ''
+pipeline { 
+    agent any 
+    options {
+        skipStagesAfterUnstable()
     }
-    agent any
     stages {
-        stage('Cloning our Git') {
-            steps {
-                git 'https://github.com/vijayaperuboinaEFX/jenkinsdockerIntegration.git'
+        stage('Build') { 
+            steps { 
+                sh 'make' 
             }
         }
-        stage('Building our image') {
+        stage('Test'){
             steps {
-                 sh 'test2'
+                sh 'make check'
+                junit 'reports/**/*.xml' 
             }
         }
-        
-        stage('Push Image To DockerHUB') {
+        stage('Deploy') {
             steps {
-               sh 'test3'
+                sh 'make publish'
             }
-        }
-        stage('Cleaning up') {
-            steps {
-                sh 'cleaning'
-            }
-        }
-        stage('Deploying to Docker Swarm') {
-            steps {
-                sh 'test4'
-            }
-        }
-        stage('Verifying The Deployment') {
-            steps {
-                sh 'test5'
-                }
         }
     }
 }
