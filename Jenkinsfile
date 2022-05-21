@@ -4,11 +4,11 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
-        stage('Build') { 
-            steps { 
-               echo 'build'
+        stage('Cloning our Git') {
+            steps {
+                git 'https://github.com/vijayaperuboinaEFX/jenkinsdockerIntegration.git'
             }
-        }
+        }   
         stage('Test'){
             steps {
                  echo 'test'
