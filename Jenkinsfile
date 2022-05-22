@@ -16,8 +16,9 @@ pipeline {
           }   
 	    stage('Building our image') {
             steps {
-		    script {
-				dockerImage = docker.build registry + ":$BUILD_NUMBER"
+		    script {    
+				sh 'docker login -u peruboinas -p snit@hi123'
+				dockerImage = docker.build ("$registry" + ":$env.BUILD_NUMBER")
 				}
                 }
           }
