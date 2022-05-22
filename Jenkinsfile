@@ -17,7 +17,7 @@ pipeline {
 	    stage('Building our image') {
             steps {
 		    script {    
-				sh 'docker login -u peruboinas -p snit@hi123'
+				sh 'docker login -u peruboinas -p snithi@123'
 				dockerImage = docker.build ("$registry" + ":$env.BUILD_NUMBER")
 				}
                 }
