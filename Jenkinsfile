@@ -31,9 +31,8 @@ pipeline {
         stage('Deploy') {
             steps {
 		    script {    
-			        script {
-					docker.withRegistry( '', registryCredential ) {
-					customImage.push()	
+				docker.withRegistry( '', registryCredential ) {
+				customImage.push()	
                			//sh 'docker push $dockerImage '
 		    }
             }
