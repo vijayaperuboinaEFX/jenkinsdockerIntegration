@@ -3,6 +3,9 @@ pipeline {
         registry = 'peruboinas/testjenkinsdocker'
         registryCredential = 'docker-hub-credentials'
         dockerImage = ''
+	DOCKER_ID = credentials('DOCKER_ID')
+        DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+
     }
     agent any 
     options {
@@ -12,6 +15,7 @@ pipeline {
         stage('Cloning our Git') {
             steps {
                 git 'https://github.com/vijayaperuboinaEFX/jenkinsdockerIntegration.git'
+		sh '$DOCKER_ID'     
             }
           }   
 	    stage('Building our image') {
