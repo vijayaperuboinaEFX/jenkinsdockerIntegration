@@ -20,6 +20,7 @@ pipeline {
 	    stage('Building our image') {
             steps {
 		    script {    
+			        sh 'docker login -u $docker_id -p $docker_cred'
 			        echo "${docker_id}"
 				dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
 			        echo "$dockerImage"
