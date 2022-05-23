@@ -23,7 +23,7 @@ pipeline {
 			    sh 'docker login -u $docker_id -p $docker_cred'
 			    echo "${docker_id}"
 			    def customImage = docker.build "my-image:${BUILD_NUMBER}"
-			   //def dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
+			   //def dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'   
 			    echo "$customImage"
 		    }
                 }
@@ -31,9 +31,9 @@ pipeline {
         stage('Deploy') {
             steps {
 		    script {    
-				docker.withRegistry( '', registryCredential ) {
-				customImage.push()	
-               			//sh 'docker push $dockerImage '
+			    docker.withRegistry ( '', ${registryCredential} ) {
+			    customImage.push($BUILD_NUMBER)	
+               		//sh 'docker push $dockerImage '
 		    }
             }
         }
