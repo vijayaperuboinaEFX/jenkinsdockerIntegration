@@ -20,11 +20,11 @@ pipeline {
 	    stage('Building our image') {
             steps {
 		    script {    
-			        sh 'docker login -u $docker_id -p $docker_cred'
-			        echo "${docker_id}"
-			        def customImage = docker.build("my-image:$BUILD_NUMBER")
-				//def dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
-			        echo "$customImage"
+			    sh 'docker login -u $docker_id -p $docker_cred'
+			    echo "${docker_id}"
+			    def customImage = docker.build "my-image:${BUILD_NUMBER}"
+			   //def dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
+			    echo "$customImage"
 		    }
                 }
           }
