@@ -15,12 +15,12 @@ pipeline {
         stage('Cloning our Git') {
             steps {
                 git 'https://github.com/vijayaperuboinaEFX/jenkinsdockerIntegration.git'
-		    sh '${docker_id}'     
             }
           }   
 	    stage('Building our image') {
             steps {
-		    script {
+		    script {    
+			        bat 'echo %docker_idY%'
 				dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
 			        echo "$dockerImage"
 		    }
