@@ -18,7 +18,7 @@ pipeline {
             steps {
 		    script {    
 				sh 'docker login -u peruboinas -p snithi@123'
-				dockerImage = docker.build ("$registry" + ":$env.BUILD_NUMBER")
+				dockerImage = docker.build ("peruboinas/testjenkinsdocker")
 				}
                 }
           }
