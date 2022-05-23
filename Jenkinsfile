@@ -31,9 +31,9 @@ pipeline {
         stage('Deploy') {
             steps {
 		    script {    
-			    echo "${registryCredential}"
-			    docker.withRegistry ( '', registryCredential ) {
-			    customImage.push($BUILD_NUMBER)	
+			    //echo "${registryCredential}"
+			    docker.withRegistry( '', registryCredential ) {
+			    dockerImage.push("$BUILD_NUMBER")
                		//sh 'docker push $dockerImage '
 		    }
             }
