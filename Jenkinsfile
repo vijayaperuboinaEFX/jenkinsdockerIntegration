@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = 'peruboinas/testjenkinsdocker'
         registryCredential = 'docker-hub-credentials'
-        dockerImage = ''
+        //dockerImage = ''
 	docker_id = credentials('DOCKER_ID')
         docker_cred = credentials('DOCKER_PASSWORD')
 
@@ -22,16 +22,18 @@ pipeline {
 		    script {    
 			        sh 'docker login -u $docker_id -p $docker_cred'
 			        echo "${docker_id}"
-				dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
-			        echo "$dockerImage"
+			        def customImage = docker.build("my-image:$BUILD_NUMBER")
+				//def dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
+			        echo "$customImage"
 		    }
                 }
           }
         stage('Deploy') {
             steps {
 		    script {    
-				//docker.withRegistry( '', registryCredential )    
-               			 sh 'docker push $dockerImage '
+			        docker.withRegistry( '', registryCredential ) {
+        		        dockerImage.push()
+               			//sh 'docker push $dockerImage '
 		    }
             }
         }
