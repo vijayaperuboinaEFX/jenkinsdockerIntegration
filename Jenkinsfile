@@ -16,10 +16,8 @@ pipeline {
           }   
 	    stage('Building our image') {
             steps {
-		    script {    
-				sh 'docker login -u peruboinas -p snithi@123'
-				dockerImage = docker.build ("peruboinas/testjenkinsdocker")
-				}
+			sh 'docker login -u peruboinas -p snithi@123'
+			dockerImage = docker.build ("peruboinas/testjenkinsdocker")	
                 }
           }
         stage('Deploy') {
