@@ -5,7 +5,7 @@ pipeline {
         //dockerImage = ''
 	docker_id = credentials('DOCKER_ID')
         docker_cred = credentials('DOCKER_PASSWORD')
-
+        def customImage = ''
     }
     agent any 
     options {
@@ -22,7 +22,7 @@ pipeline {
 		    script {    
 			    sh 'docker login -u $docker_id -p $docker_cred'
 			    echo "${docker_id}"
-			    def customImage = docker.build "my-image:${BUILD_NUMBER}"
+			    customImage = docker.build "my-image:${BUILD_NUMBER}"
 			   //def dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'   
 			    echo "$customImage"
 		    }
@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
 		    script {    
-			    echo 'registryCredential'
+			    echo "${registryCredential}'
 			    docker.withRegistry ( '', registryCredential ) {
 			    customImage.push($BUILD_NUMBER)	
                		//sh 'docker push $dockerImage '
