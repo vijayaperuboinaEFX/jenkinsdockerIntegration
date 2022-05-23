@@ -17,15 +17,14 @@ pipeline {
 	    stage('Building our image') {
             steps {
 		    script {
-				sh 'docker login -u peruboinas -p snithi@123'
 				dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
-			        echo '$dockerImage'
+			        echo "$dockerImage"
 		    }
                 }
           }
         stage('Deploy') {
             steps {
-                sh 'docker push $dockerImage'
+                sh 'docker push "$dockerImage " '
             }
         }
     }	    
