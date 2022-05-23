@@ -15,7 +15,7 @@ pipeline {
         stage('Cloning our Git') {
             steps {
                 git 'https://github.com/vijayaperuboinaEFX/jenkinsdockerIntegration.git'
-		sh '$DOCKER_ID'     
+		    sh '${DOCKER_ID}'     
             }
           }   
 	    stage('Building our image') {
