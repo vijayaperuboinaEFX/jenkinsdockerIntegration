@@ -19,12 +19,13 @@ pipeline {
 		    script {
 				sh 'docker login -u peruboinas -p snithi@123'
 				dockerImage = sh 'docker build -t  $registry:$BUILD_NUMBER .'
+			        echo '$dockerImage'
 		    }
                 }
           }
         stage('Deploy') {
             steps {
-                sh 'docker push peruboinas/testjenkinsdocker:latest'
+                sh 'docker push $dockerImage'
             }
         }
     }	    
